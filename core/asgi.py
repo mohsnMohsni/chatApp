@@ -7,9 +7,12 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/
 """
 
+# Standard imports
 import os
 
+# Core imports.
 from django.core.asgi import get_asgi_application
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
