@@ -1,0 +1,21 @@
+[tool.black]
+line-length = 119
+skip-string-normalization = 1
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      /.git
+    | /.vscode
+    | /.venv
+    | /venv
+    | /env
+    | /.env
+    | __pycache__
+    | migrations
+    | setting
+    | __init__.py
+  )/
+  | manage.py
+)
+'''

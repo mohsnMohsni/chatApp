@@ -1,0 +1,5 @@
+-r base.txt
+
+# Linter & Prettier
+black==22.8.0
+isort==5.10.1

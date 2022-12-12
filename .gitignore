@@ -1,0 +1,20 @@
+# editor
+*.pyc
+.idea/*
+/.idea
+.vscode/
+__pycache__/
+
+# virtualenv
+venv/
+
+# test
+*.coverage
+.coverage
+
+# db
+*.sqlite3
+
+# env
+.env.development
+.env.production
