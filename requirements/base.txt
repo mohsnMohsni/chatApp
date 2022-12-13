@@ -5,3 +5,6 @@ channels[daphne]==4.0.0
 # DB
 channels-redis==4.0.0
 redis==4.4.0
+
+# Configuration
+django-split-settings==1.2.0
