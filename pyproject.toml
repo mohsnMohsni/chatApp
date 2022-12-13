@@ -1,21 +1,6 @@
 [tool.black]
 line-length = 119
+target-version = ["py37", "py38", "py39", "py310", "py311"]
 skip-string-normalization = 1
-include = '\.pyi?$'
-exclude = '''
-(
-  /(
-      /.git
-    | /.vscode
-    | /.venv
-    | /venv
-    | /env
-    | /.env
-    | __pycache__
-    | migrations
-    | setting
-    | __init__.py
-  )/
-  | manage.py
-)
-'''
+# default black use gitignore to exclude
+# extend-exclude =
