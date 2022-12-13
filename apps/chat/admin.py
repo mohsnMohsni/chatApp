@@ -1,8 +1,8 @@
 # Core imports.
 from django.contrib import admin
 
-from .models import Room, Message
+from .models import RoomModel, MessageModel
 
 
-admin.site.register(Room)
-admin.site.register(Message)
+admin.site.register(RoomModel)
+admin.site.register(MessageModel)

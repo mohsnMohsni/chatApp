@@ -1,7 +1,7 @@
 # Core imports.
 from django.shortcuts import render
 
-from .models import Room
+from .models import RoomModel
 
 
 def index_view(request):
@@ -15,7 +15,7 @@ def index_view(request):
 
 
 def room_view(request, room_name):
-    chat_room, created = Room.objects.get_or_create(name=room_name)
+    chat_room, created = RoomModel.objects.get_or_create(name=room_name)
     return render(
         request,
         'room.html',
