@@ -1,6 +1,6 @@
 # Core
-Django==4.0
-channels==4.0.0
+Django==4.1.4
+channels[daphne]==4.0.0
 
 # DB
 channels-redis==4.0.0
