@@ -29,11 +29,36 @@ class ChatWebsocketConsumer(WebsocketConsumer):
             self.channel_name,
         )
 
+        self.send(json.dumps({
+            'type': 'users_list',
+            'users': [user.username for user in self.room.online.all()],
+        }))
+
+        if self.user.is_authenticated:
+            async_to_sync(self.channel_layer.group_send)(
+                self.room_group_name,
+                {
+                    'type': 'user_join',
+                    'user': self.user.username,
+                }
+            )
+            self.room.online.add(self.user)
+
     def disconnect(self, code):
         async_to_sync(self.channel_layer.group_discard)(
             self.room_group_name,
             self.channel_name,
         )
+
+        if self.user.is_authenticated:
+            async_to_sync(self.channel_layer.group_send)(
+                self.room_group_name,
+                {
+                    'type': 'user_leave',
+                    'user': self.user.username
+                }
+            )
+            self.room.online.remove(self.user)
 
     def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
@@ -53,4 +78,10 @@ class ChatWebsocketConsumer(WebsocketConsumer):
         MessageModel.objects.create(user=self.user, room=self.room, content=message)
 
     def chat_message(self, event):
+        self.send(text_data=json.dumps(event))
+
+    def user_join(self, event):
+        self.send(text_data=json.dumps(event))
+
+    def user_leave(self, event):
         self.send(text_data=json.dumps(event))
